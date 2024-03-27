@@ -1,0 +1,65 @@
+ ###Read service metadata
+GET http://localhost:4004/odata/v4/CatalogService/$metadata
+
+###Get Top 2 employees
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+
+###Get count of emps
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+
+###Get the employee which was created
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/eadff3a6-3c41-485e-b3f2-f298bf684df2
+
+
+###Get Top 2 employees
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=2&$skip=2
+
+###Get Top 2 employees
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=sex eq 'F'
+###Get Top 2 employees
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet?&filter=language eq 'E'
+
+###Get Top 2 employees
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameFirst,'Su')
+
+###POST Call - Create new employee
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{
+      "nameFirst": "Vamsi",
+      "nameMiddle": null,
+      "nameLast": "Krishna",
+      "nameInitials": null,
+      "sex": "M",
+      "language": "E",
+      "phoneNumber": null,
+      "email": "vamsi.krishna@ey.com",
+      "loginName": "VAMSIK",
+      "Currency_code": "USD",
+      "salaryAmount": 107000,
+      "accountNumber": "9003115892",
+      "bankId": "12100035",
+      "bankName": "My Bank of Anna Nagar"
+}
+
+###Update employee Salary
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/a7534288-653c-4b57-b408-c1ae523d8cad
+Content-Type: application/json
+
+{
+    "salaryAmount": 90000,
+    "Currency_code": "EUR"
+}
+
+###Delete the employee which was created
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/a7534288-653c-4b57-b408-c1ae523d8cad
+
+###Get POs
+GET http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2A052/Items
+
+###Boosting a order
+POST http://localhost:4004/CatalogService/POs('74867AD200E41EDBA5D8B0C98DC34052')/CatalogService.boost
+Content-Type: application/json
+
+{}
